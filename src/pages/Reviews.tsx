@@ -1,9 +1,11 @@
 import { useState } from 'react';
 import { 
-  CheckCircle2, XCircle, AlertTriangle, MessageSquare, 
-  ThumbsUp, ThumbsDown, HelpCircle, Send, Clock, User
+  ThumbsUp, ThumbsDown, HelpCircle, MessageSquare, 
+  Send, Clock, User, CheckCircle2, XCircle, AlertTriangle
 } from 'lucide-react';
 import { mockFeedback, mockTraces } from '../data/mockData';
+import { Card, Badge, Button, Avatar } from '../components/ui';
+import { cn } from '../lib/utils';
 import { Feedback } from '../types';
 
 export default function Reviews() {
@@ -17,16 +19,12 @@ export default function Reviews() {
   );
 
   const handleLabel = (id: string, label: 'good' | 'bad' | 'needs_review') => {
-    setFeedbacks(prev => prev.map(f => 
-      f.id === id ? { ...f, label } : f
-    ));
+    setFeedbacks(prev => prev.map(f => f.id === id ? { ...f, label } : f));
   };
 
   const handleSubmitComment = (id: string) => {
     if (comment.trim()) {
-      setFeedbacks(prev => prev.map(f => 
-        f.id === id ? { ...f, comment: comment.trim() } : f
-      ));
+      setFeedbacks(prev => prev.map(f => f.id === id ? { ...f, comment: comment.trim() } : f));
       setComment('');
       setSelectedFeedback(null);
     }
@@ -35,27 +33,29 @@ export default function Reviews() {
   const getTrace = (traceId: string) => mockTraces.find(t => t.id === traceId);
 
   const labelConfig = {
-    good: { icon: ThumbsUp, color: 'text-green-400 bg-green-500/10 border-green-500/20', label: 'Correct' },
-    bad: { icon: ThumbsDown, color: 'text-red-400 bg-red-500/10 border-red-500/20', label: 'Incorrect' },
-    needs_review: { icon: HelpCircle, color: 'text-yellow-400 bg-yellow-500/10 border-yellow-500/20', label: 'Needs Review' },
+    good: { icon: ThumbsUp, variant: 'success' as const, label: 'Correct' },
+    bad: { icon: ThumbsDown, variant: 'danger' as const, label: 'Incorrect' },
+    needs_review: { icon: HelpCircle, variant: 'warning' as const, label: 'Needs Review' },
   };
 
   return (
-    <div className="space-y-6">
+    <div className="space-y-6 animate-in">
+      {/* Header */}
       <div className="flex items-center justify-between">
         <div>
-          <h1 className="text-2xl font-bold text-white">Human Review</h1>
-          <p className="text-gray-400 text-sm mt-1">Validate AI suggestions and provide feedback on traces</p>
+          <h1 className="text-2xl font-bold text-white tracking-tight">Human Review</h1>
+          <p className="text-sm text-zinc-500 mt-0.5">Validate AI suggestions and provide feedback</p>
         </div>
-        <div className="flex items-center gap-3">
-          <div className="flex items-center gap-2 text-sm">
-            <span className="text-gray-400">Pending:</span>
-            <span className="text-yellow-400 font-medium">{feedbacks.filter(f => f.label === 'needs_review').length}</span>
-          </div>
-          <div className="h-4 w-px bg-gray-700" />
-          <div className="flex items-center gap-2 text-sm">
-            <span className="text-gray-400">Reviewed:</span>
-            <span className="text-green-400 font-medium">{feedbacks.filter(f => f.label !== 'needs_review').length}</span>
+        <div className="flex items-center gap-4">
+          <div className="flex items-center gap-6 text-xs">
+            <div className="flex items-center gap-2">
+              <div className="w-2 h-2 rounded-full bg-amber-400" />
+              <span className="text-zinc-400">Pending: <span className="text-amber-400 font-medium">{feedbacks.filter(f => f.label === 'needs_review').length}</span></span>
+            </div>
+            <div className="flex items-center gap-2">
+              <div className="w-2 h-2 rounded-full bg-emerald-400" />
+              <span className="text-zinc-400">Reviewed: <span className="text-emerald-400 font-medium">{feedbacks.filter(f => f.label !== 'needs_review').length}</span></span>
+            </div>
           </div>
         </div>
       </div>
@@ -71,147 +71,136 @@ export default function Reviews() {
           <button
             key={tab.value}
             onClick={() => setFilter(tab.value)}
-            className={`px-4 py-2 rounded-lg text-sm font-medium transition-colors ${
+            className={cn(
+              'px-4 py-2 rounded-lg text-xs font-medium transition-all',
               filter === tab.value 
-                ? 'bg-orange-500/10 text-orange-400 border border-orange-500/20' 
-                : 'text-gray-400 hover:text-gray-200 bg-gray-800/50 border border-gray-800'
-            }`}
+                ? 'bg-zinc-800 text-white border border-zinc-700 shadow-sm' 
+                : 'text-zinc-500 hover:text-zinc-300 border border-transparent hover:bg-zinc-800/40'
+            )}
           >
-            {tab.label} ({tab.count})
+            {tab.label} <span className="text-zinc-600 ml-1">({tab.count})</span>
           </button>
         ))}
       </div>
 
       {/* Review Cards */}
-      <div className="space-y-4">
+      <div className="space-y-3">
         {filteredFeedbacks.map(feedback => {
           const trace = getTrace(feedback.trace_id);
           const config = labelConfig[feedback.label];
           const LabelIcon = config.icon;
 
           return (
-            <div key={feedback.id} className="bg-gray-900 border border-gray-800 rounded-xl p-5 hover:border-gray-700 transition-colors">
-              <div className="flex items-start justify-between">
-                <div className="flex items-start gap-4">
-                  <div className={`w-10 h-10 rounded-lg flex items-center justify-center border ${config.color}`}>
-                    <LabelIcon className="w-5 h-5" />
-                  </div>
-                  <div>
-                    <div className="flex items-center gap-2">
-                      <span className="text-white font-mono text-sm">{feedback.trace_id}</span>
-                      <span className={`px-2 py-0.5 rounded text-xs font-medium border ${config.color}`}>
-                        {config.label}
-                      </span>
-                    </div>
-                    {trace && (
-                      <p className="text-gray-400 text-sm mt-1">{trace.pipeline_name} • {trace.user_id}</p>
-                    )}
-                    <div className="flex items-center gap-4 mt-2 text-xs text-gray-500">
-                      <span className="flex items-center gap-1">
-                        <User className="w-3 h-3" />
-                        {feedback.reviewer}
-                      </span>
-                      <span className="flex items-center gap-1">
-                        <Clock className="w-3 h-3" />
-                        {new Date(feedback.created_at).toLocaleString()}
-                      </span>
-                    </div>
-                  </div>
-                </div>
-              </div>
-
-              {/* Comment */}
-              {feedback.comment && (
-                <div className="mt-4 ml-14 p-3 bg-gray-800/50 rounded-lg border border-gray-700/50">
+            <Card key={feedback.id} className="p-5 hover-lift">
+              <div className="flex items-start gap-4">
+                <Avatar initials={feedback.reviewer.slice(0, 2).toUpperCase()} color="purple" />
+                <div className="flex-1 min-w-0">
+                  {/* Header */}
                   <div className="flex items-center gap-2 mb-1">
-                    <MessageSquare className="w-3 h-3 text-gray-500" />
-                    <span className="text-xs text-gray-500">Comment</span>
+                    <span className="text-sm font-medium text-zinc-200">{feedback.reviewer}</span>
+                    <Badge variant={config.variant}>
+                      <LabelIcon className="w-3 h-3" />
+                      {config.label}
+                    </Badge>
+                    <span className="text-[10px] text-zinc-600 ml-auto flex items-center gap-1">
+                      <Clock className="w-3 h-3" />
+                      {new Date(feedback.created_at).toLocaleString()}
+                    </span>
                   </div>
-                  <p className="text-gray-300 text-sm">{feedback.comment}</p>
-                </div>
-              )}
+                  
+                  <p className="text-xs font-mono text-zinc-500 mb-3">trace: {feedback.trace_id}</p>
 
-              {/* Trace Preview */}
-              {trace && (
-                <div className="mt-4 ml-14 p-3 bg-gray-800/30 rounded-lg border border-gray-700/30">
-                  <p className="text-xs text-gray-500 mb-1">Final Output:</p>
-                  <p className="text-gray-300 text-sm truncate">
-                    {trace.final_output || <span className="text-red-400 italic">No output (failed)</span>}
-                  </p>
-                  {trace.root_cause && (
-                    <p className="text-xs text-orange-400 mt-2">
-                      Root Cause: {trace.root_cause} ({((trace.root_cause_confidence || 0) * 100).toFixed(0)}% confidence)
-                    </p>
+                  {/* Trace Preview */}
+                  {trace && (
+                    <div className="p-3 bg-zinc-800/30 rounded-lg border border-zinc-800/50 mb-3">
+                      <div className="flex items-center gap-2 mb-1.5">
+                        <span className="text-[10px] text-zinc-500 uppercase tracking-wider">Pipeline</span>
+                        <span className="text-xs text-zinc-300">{trace.pipeline_name}</span>
+                      </div>
+                      <p className="text-xs text-zinc-400 truncate">
+                        {trace.final_output || <span className="text-red-400 italic">No output (failed)</span>}
+                      </p>
+                      {trace.root_cause && (
+                        <div className="flex items-center gap-2 mt-2">
+                          <span className="text-[10px] text-zinc-500">Root Cause:</span>
+                          <Badge variant="danger">{trace.root_cause}</Badge>
+                          <span className="text-[10px] text-zinc-500">{((trace.root_cause_confidence || 0) * 100).toFixed(0)}%</span>
+                        </div>
+                      )}
+                    </div>
                   )}
-                </div>
-              )}
 
-              {/* Actions */}
-              <div className="mt-4 ml-14 flex items-center gap-3">
-                <button
-                  onClick={() => handleLabel(feedback.id, 'good')}
-                  className={`flex items-center gap-1.5 px-3 py-1.5 rounded-lg text-xs font-medium transition-colors ${
-                    feedback.label === 'good' 
-                      ? 'bg-green-500/20 text-green-400 border border-green-500/30' 
-                      : 'bg-gray-800 text-gray-400 border border-gray-700 hover:border-green-500/30 hover:text-green-400'
-                  }`}
-                >
-                  <CheckCircle2 className="w-3.5 h-3.5" />
-                  Correct
-                </button>
-                <button
-                  onClick={() => handleLabel(feedback.id, 'bad')}
-                  className={`flex items-center gap-1.5 px-3 py-1.5 rounded-lg text-xs font-medium transition-colors ${
-                    feedback.label === 'bad' 
-                      ? 'bg-red-500/20 text-red-400 border border-red-500/30' 
-                      : 'bg-gray-800 text-gray-400 border border-gray-700 hover:border-red-500/30 hover:text-red-400'
-                  }`}
-                >
-                  <XCircle className="w-3.5 h-3.5" />
-                  Incorrect
-                </button>
-                <button
-                  onClick={() => handleLabel(feedback.id, 'needs_review')}
-                  className={`flex items-center gap-1.5 px-3 py-1.5 rounded-lg text-xs font-medium transition-colors ${
-                    feedback.label === 'needs_review' 
-                      ? 'bg-yellow-500/20 text-yellow-400 border border-yellow-500/30' 
-                      : 'bg-gray-800 text-gray-400 border border-gray-700 hover:border-yellow-500/30 hover:text-yellow-400'
-                  }`}
-                >
-                  <AlertTriangle className="w-3.5 h-3.5" />
-                  Needs Review
-                </button>
+                  {/* Comment */}
+                  {feedback.comment && (
+                    <div className="p-3 bg-zinc-800/20 rounded-lg border border-zinc-800/30 mb-3">
+                      <div className="flex items-center gap-1.5 mb-1">
+                        <MessageSquare className="w-3 h-3 text-zinc-500" />
+                        <span className="text-[10px] text-zinc-500 uppercase tracking-wider">Comment</span>
+                      </div>
+                      <p className="text-xs text-zinc-300">{feedback.comment}</p>
+                    </div>
+                  )}
 
-                <div className="h-4 w-px bg-gray-700 mx-1" />
-
-                {selectedFeedback === feedback.id ? (
-                  <div className="flex items-center gap-2 flex-1">
-                    <input
-                      type="text"
-                      value={comment}
-                      onChange={(e) => setComment(e.target.value)}
-                      placeholder="Add comment..."
-                      className="flex-1 bg-gray-800 border border-gray-700 rounded-lg px-3 py-1.5 text-sm text-gray-200 focus:outline-none focus:border-orange-500/50"
-                      onKeyDown={(e) => e.key === 'Enter' && handleSubmitComment(feedback.id)}
-                    />
-                    <button
-                      onClick={() => handleSubmitComment(feedback.id)}
-                      className="p-1.5 bg-orange-500 hover:bg-orange-600 rounded-lg transition-colors"
+                  {/* Actions */}
+                  <div className="flex items-center gap-2">
+                    <Button 
+                      variant={feedback.label === 'good' ? 'secondary' : 'ghost'} 
+                      size="sm"
+                      onClick={() => handleLabel(feedback.id, 'good')}
+                      className={feedback.label === 'good' ? 'border-emerald-500/30 text-emerald-400' : ''}
                     >
-                      <Send className="w-3.5 h-3.5 text-white" />
-                    </button>
+                      <CheckCircle2 className="w-3.5 h-3.5" />
+                      Correct
+                    </Button>
+                    <Button 
+                      variant={feedback.label === 'bad' ? 'secondary' : 'ghost'} 
+                      size="sm"
+                      onClick={() => handleLabel(feedback.id, 'bad')}
+                      className={feedback.label === 'bad' ? 'border-red-500/30 text-red-400' : ''}
+                    >
+                      <XCircle className="w-3.5 h-3.5" />
+                      Incorrect
+                    </Button>
+                    <Button 
+                      variant={feedback.label === 'needs_review' ? 'secondary' : 'ghost'} 
+                      size="sm"
+                      onClick={() => handleLabel(feedback.id, 'needs_review')}
+                      className={feedback.label === 'needs_review' ? 'border-amber-500/30 text-amber-400' : ''}
+                    >
+                      <AlertTriangle className="w-3.5 h-3.5" />
+                      Review
+                    </Button>
+
+                    <div className="h-4 w-px bg-zinc-800 mx-1" />
+
+                    {selectedFeedback === feedback.id ? (
+                      <div className="flex items-center gap-2 flex-1">
+                        <input
+                          type="text"
+                          value={comment}
+                          onChange={(e) => setComment(e.target.value)}
+                          placeholder="Add comment..."
+                          className="flex-1 bg-zinc-800/50 border border-zinc-700/50 rounded-lg px-3 py-1.5 text-xs text-zinc-200 focus:outline-none focus:border-orange-500/50 placeholder:text-zinc-600"
+                          onKeyDown={(e) => e.key === 'Enter' && handleSubmitComment(feedback.id)}
+                          autoFocus
+                        />
+                        <button
+                          onClick={() => handleSubmitComment(feedback.id)}
+                          className="p-1.5 bg-orange-500 hover:bg-orange-600 rounded-lg transition-colors"
+                        >
+                          <Send className="w-3 h-3 text-white" />
+                        </button>
+                      </div>
+                    ) : (
+                      <Button variant="ghost" size="sm" onClick={() => setSelectedFeedback(feedback.id)}>
+                        <MessageSquare className="w-3.5 h-3.5" />
+                        Comment
+                      </Button>
+                    )}
                   </div>
-                ) : (
-                  <button
-                    onClick={() => setSelectedFeedback(feedback.id)}
-                    className="flex items-center gap-1.5 px-3 py-1.5 rounded-lg text-xs font-medium bg-gray-800 text-gray-400 border border-gray-700 hover:border-gray-600 hover:text-gray-200 transition-colors"
-                  >
-                    <MessageSquare className="w-3.5 h-3.5" />
-                    Comment
-                  </button>
-                )}
+                </div>
               </div>
-            </div>
+            </Card>
           );
         })}
       </div>

@@ -5,7 +5,6 @@ const generateId = () => Math.random().toString(36).substr(2, 9);
 const pipelines = ['rag_pipeline', 'agent_workflow', 'multi_agent_crew', 'code_gen_pipeline', 'summarization_chain'];
 const users = ['alice_eng', 'bob_ml', 'carol_pm', 'dave_qa', 'eve_sre'];
 const rootCauses = ['retriever', 'generator', 'verifier', 'tool_call', 'prompt_engineering', 'context_window'];
-const nodeTypes: Span['node_type'][] = ['retrieve', 'generate', 'verify', 'tool', 'rewrite', 'agent'];
 
 function generateSpans(traceId: string, count: number, hasFailure: boolean): Span[] {
   const nodes = ['retrieve', 'rewrite', 'generate', 'verify'];
