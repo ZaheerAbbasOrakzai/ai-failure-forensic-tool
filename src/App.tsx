@@ -10,6 +10,9 @@ import RootCauseAnalysis from './pages/RootCauseAnalysis';
 import Reviews from './pages/Reviews';
 import EvalDataset from './pages/EvalDataset';
 import Analytics from './pages/Analytics';
+import Incidents from './pages/Incidents';
+import Integrations from './pages/Integrations';
+import SDKDocs from './pages/SDKDocs';
 
 export default function App() {
   const [commandPaletteOpen, setCommandPaletteOpen] = useState(false);
@@ -37,10 +40,13 @@ export default function App() {
               <Route path="/" element={<Dashboard />} />
               <Route path="/traces" element={<TraceExplorer />} />
               <Route path="/traces/:traceId" element={<TraceDetail />} />
+              <Route path="/incidents" element={<Incidents />} />
               <Route path="/root-cause" element={<RootCauseAnalysis />} />
               <Route path="/reviews" element={<Reviews />} />
               <Route path="/evals" element={<EvalDataset />} />
               <Route path="/analytics" element={<Analytics />} />
+              <Route path="/integrations" element={<Integrations />} />
+              <Route path="/sdk" element={<SDKDocs />} />
             </Routes>
           </main>
         </div>

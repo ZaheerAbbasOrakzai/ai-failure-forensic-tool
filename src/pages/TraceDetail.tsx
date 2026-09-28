@@ -274,7 +274,7 @@ export default function TraceDetail() {
             <Card className="p-5" glow="orange">
               <h3 className="text-sm font-semibold text-white mb-3">Recommendations</h3>
               <div className="space-y-2.5">
-                {rootCause.recommendations.map((rec, i) => (
+                {rootCause.recommendations.map((rec: string, i: number) => (
                   <div key={i} className="flex items-start gap-2">
                     <ChevronRight className="w-3 h-3 text-orange-400 mt-0.5 flex-shrink-0" />
                     <span className="text-xs text-zinc-300 leading-relaxed">{rec}</span>

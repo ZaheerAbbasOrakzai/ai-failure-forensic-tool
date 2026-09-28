@@ -4,10 +4,13 @@ import { useLocation } from 'react-router-dom';
 const pageNames: Record<string, string> = {
   '/': 'Dashboard',
   '/traces': 'Trace Explorer',
+  '/incidents': 'Incidents',
   '/root-cause': 'Root Cause Analysis',
   '/reviews': 'Human Review',
   '/evals': 'Evaluation Dataset',
   '/analytics': 'Analytics',
+  '/integrations': 'Integrations',
+  '/sdk': 'SDK & Docs',
 };
 
 interface HeaderProps {

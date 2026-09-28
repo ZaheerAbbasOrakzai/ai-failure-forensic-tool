@@ -9,11 +9,13 @@ export default function TraceExplorer() {
   const navigate = useNavigate();
   const [statusFilter, setStatusFilter] = useState<string>('all');
   const [pipelineFilter, setPipelineFilter] = useState<string>('all');
+  const [industryFilter, setIndustryFilter] = useState<string>('all');
   const [searchQuery, setSearchQuery] = useState('');
 
   const filteredTraces = mockTraces.filter(trace => {
     if (statusFilter !== 'all' && trace.status !== statusFilter) return false;
     if (pipelineFilter !== 'all' && trace.pipeline_name !== pipelineFilter) return false;
+    if (industryFilter !== 'all' && trace.industry !== industryFilter) return false;
     if (searchQuery && !trace.id.includes(searchQuery) && !trace.pipeline_name.includes(searchQuery)) return false;
     return true;
   });
@@ -70,11 +72,24 @@ export default function TraceExplorer() {
               className="bg-zinc-800/50 border border-zinc-700/50 rounded-lg px-3 py-2.5 text-xs text-zinc-300 focus:outline-none focus:border-orange-500/50 cursor-pointer"
             >
               <option value="all">All Pipelines</option>
-              <option value="rag_pipeline">RAG Pipeline</option>
-              <option value="agent_workflow">Agent Workflow</option>
-              <option value="multi_agent_crew">Multi-Agent Crew</option>
-              <option value="code_gen_pipeline">Code Gen</option>
-              <option value="summarization_chain">Summarization</option>
+              <option value="medical_diagnosis_assistant">Medical Diagnosis</option>
+              <option value="fraud_detection_agent">Fraud Detection</option>
+              <option value="contract_review_agent">Contract Review</option>
+              <option value="customer_support_agent">Customer Support</option>
+              <option value="code_review_assistant">Code Review</option>
+            </select>
+
+            <select
+              value={industryFilter}
+              onChange={(e) => setIndustryFilter(e.target.value)}
+              className="bg-zinc-800/50 border border-zinc-700/50 rounded-lg px-3 py-2.5 text-xs text-zinc-300 focus:outline-none focus:border-orange-500/50 cursor-pointer"
+            >
+              <option value="all">All Industries</option>
+              <option value="healthcare">Healthcare</option>
+              <option value="finance">Financial Services</option>
+              <option value="legal">Legal Tech</option>
+              <option value="ecommerce">E-Commerce</option>
+              <option value="saas">SaaS / Tech</option>
             </select>
           </div>
         </div>
@@ -88,6 +103,7 @@ export default function TraceExplorer() {
               <tr className="border-b border-zinc-800/60 bg-zinc-900/30">
                 <th className="text-left text-[10px] font-semibold text-zinc-500 uppercase tracking-wider px-5 py-3">Trace ID</th>
                 <th className="text-left text-[10px] font-semibold text-zinc-500 uppercase tracking-wider px-5 py-3">Pipeline</th>
+                <th className="text-left text-[10px] font-semibold text-zinc-500 uppercase tracking-wider px-5 py-3">Industry</th>
                 <th className="text-left text-[10px] font-semibold text-zinc-500 uppercase tracking-wider px-5 py-3">Status</th>
                 <th className="text-left text-[10px] font-semibold text-zinc-500 uppercase tracking-wider px-5 py-3">Duration</th>
                 <th className="text-left text-[10px] font-semibold text-zinc-500 uppercase tracking-wider px-5 py-3">Root Cause</th>
@@ -112,6 +128,11 @@ export default function TraceExplorer() {
                         <Zap className="w-3.5 h-3.5 text-zinc-500" />
                         <span className="text-sm text-zinc-200">{trace.pipeline_name}</span>
                       </div>
+                    </td>
+                    <td className="px-5 py-3.5">
+                      <Badge variant="outline" className="capitalize">
+                        {trace.industry || '—'}
+                      </Badge>
                     </td>
                     <td className="px-5 py-3.5">
                       <Badge variant={trace.status === 'success' ? 'success' : trace.status === 'failed' ? 'danger' : 'warning'}>

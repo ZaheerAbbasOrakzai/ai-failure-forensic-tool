@@ -10,10 +10,13 @@ interface CommandPaletteProps {
 const commands = [
   { id: 'dashboard', label: 'Go to Dashboard', icon: LayoutDashboard, path: '/', category: 'Navigation' },
   { id: 'traces', label: 'Go to Trace Explorer', icon: Search, path: '/traces', category: 'Navigation' },
+  { id: 'incidents', label: 'Go to Incidents', icon: Target, path: '/incidents', category: 'Navigation' },
   { id: 'root-cause', label: 'Go to Root Cause Analysis', icon: Target, path: '/root-cause', category: 'Navigation' },
   { id: 'reviews', label: 'Go to Reviews', icon: MessageSquare, path: '/reviews', category: 'Navigation' },
   { id: 'evals', label: 'Go to Eval Dataset', icon: Database, path: '/evals', category: 'Navigation' },
   { id: 'analytics', label: 'Go to Analytics', icon: BarChart3, path: '/analytics', category: 'Navigation' },
+  { id: 'integrations', label: 'Go to Integrations', icon: Database, path: '/integrations', category: 'Navigation' },
+  { id: 'sdk', label: 'Go to SDK & Docs', icon: Database, path: '/sdk', category: 'Navigation' },
   { id: 'run-analysis', label: 'Run Root Cause Analysis', icon: Zap, path: '/root-cause', category: 'Actions' },
   { id: 'export-data', label: 'Export Evaluation Dataset', icon: Database, path: '/evals', category: 'Actions' },
 ];

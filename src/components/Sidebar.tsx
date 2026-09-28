@@ -2,17 +2,20 @@ import { NavLink, useLocation } from 'react-router-dom';
 import { 
   LayoutDashboard, Search, Target, MessageSquare, 
   Database, BarChart3, Settings, Zap, HelpCircle,
-  ChevronRight, Command
+  ChevronRight, Command, AlertTriangle, Plug, BookOpen
 } from 'lucide-react';
 import { cn } from '../lib/utils';
 
 const navItems = [
   { path: '/', icon: LayoutDashboard, label: 'Dashboard' },
   { path: '/traces', icon: Search, label: 'Traces' },
+  { path: '/incidents', icon: AlertTriangle, label: 'Incidents' },
   { path: '/root-cause', icon: Target, label: 'Root Cause' },
   { path: '/reviews', icon: MessageSquare, label: 'Reviews' },
   { path: '/evals', icon: Database, label: 'Eval Dataset' },
   { path: '/analytics', icon: BarChart3, label: 'Analytics' },
+  { path: '/integrations', icon: Plug, label: 'Integrations' },
+  { path: '/sdk', icon: BookOpen, label: 'SDK & Docs' },
 ];
 
 interface SidebarProps {
@@ -59,9 +62,9 @@ export default function Sidebar({ onCommandPalette }: SidebarProps) {
       {/* Navigation */}
       <nav className="flex-1 px-3 py-3 space-y-0.5 overflow-y-auto">
         <div className="px-3 py-1.5 text-[10px] font-semibold text-zinc-600 uppercase tracking-wider">
-          Overview
+          Monitor
         </div>
-        {navItems.slice(0, 3).map(item => {
+        {navItems.slice(0, 4).map(item => {
           const isActive = item.path === '/' 
             ? location.pathname === '/' 
             : location.pathname.startsWith(item.path);
@@ -87,7 +90,31 @@ export default function Sidebar({ onCommandPalette }: SidebarProps) {
         <div className="px-3 py-1.5 mt-4 text-[10px] font-semibold text-zinc-600 uppercase tracking-wider">
           Workflow
         </div>
-        {navItems.slice(3).map(item => {
+        {navItems.slice(4, 7).map(item => {
+          const isActive = location.pathname.startsWith(item.path);
+          
+          return (
+            <NavLink
+              key={item.path}
+              to={item.path}
+              className={cn(
+                'flex items-center gap-3 px-3 py-2 rounded-lg text-sm transition-all duration-200 group',
+                isActive 
+                  ? 'bg-zinc-800/80 text-white shadow-sm' 
+                  : 'text-zinc-400 hover:text-zinc-200 hover:bg-zinc-800/40'
+              )}
+            >
+              <item.icon className={cn('w-4 h-4 transition-colors', isActive ? 'text-orange-400' : 'text-zinc-500 group-hover:text-zinc-400')} />
+              <span className="flex-1">{item.label}</span>
+              {isActive && <div className="w-1.5 h-1.5 rounded-full bg-orange-400" />}
+            </NavLink>
+          );
+        })}
+
+        <div className="px-3 py-1.5 mt-4 text-[10px] font-semibold text-zinc-600 uppercase tracking-wider">
+          Platform
+        </div>
+        {navItems.slice(7).map(item => {
           const isActive = location.pathname.startsWith(item.path);
           
           return (

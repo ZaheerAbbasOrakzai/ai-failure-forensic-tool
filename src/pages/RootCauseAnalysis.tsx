@@ -136,7 +136,7 @@ export default function RootCauseAnalysis() {
 
             <div className="space-y-2">
               <p className="text-[10px] text-zinc-600 font-semibold uppercase tracking-wider">Recommendations</p>
-              {result.recommendations.slice(0, 3).map((rec, j) => (
+              {result.recommendations.slice(0, 3).map((rec: string, j: number) => (
                 <div key={j} className="flex items-start gap-2">
                   <Lightbulb className="w-3 h-3 text-orange-400 mt-0.5 flex-shrink-0" />
                   <span className="text-xs text-zinc-300 leading-relaxed">{rec}</span>

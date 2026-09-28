@@ -2,13 +2,13 @@ import { useNavigate } from 'react-router-dom';
 import { 
   Activity, AlertTriangle, CheckCircle2, Clock, 
   TrendingDown, Zap, ArrowUpRight, ArrowDownRight,
-  XCircle, ChevronRight, Flame
+  XCircle, ChevronRight, Flame, DollarSign, Shield
 } from 'lucide-react';
 import { 
   AreaChart, Area, XAxis, YAxis, CartesianGrid, Tooltip, ResponsiveContainer,
   PieChart, Pie, Cell, BarChart, Bar
 } from 'recharts';
-import { mockTraces, dailyTraceData, failureBreakdown, pipelineComparison } from '../data/mockData';
+import { mockTraces, dailyTraceData, failureBreakdown, pipelineComparison, mockIncidents } from '../data/mockData';
 import { Card, StatCard, Badge } from '../components/ui';
 import { cn } from '../lib/utils';
 
@@ -19,6 +19,8 @@ export default function Dashboard() {
   const failed = mockTraces.filter(t => t.status === 'failed').length;
   const failureRate = ((failed / totalTraces) * 100).toFixed(1);
   const avgLatency = (mockTraces.reduce((sum, t) => sum + t.duration_ms, 0) / totalTraces / 1000).toFixed(2);
+  const totalCost = mockTraces.reduce((sum, t) => sum + parseFloat(t.cost_usd || '0'), 0).toFixed(2);
+  const activeIncidents = mockIncidents.filter(i => i.status !== 'resolved').length;
 
   return (
     <div className="space-y-6 animate-in">
@@ -77,6 +79,48 @@ export default function Dashboard() {
           icon={Clock} 
           accent="purple"
         />
+      </div>
+
+      {/* Enterprise Metrics */}
+      <div className="grid grid-cols-1 md:grid-cols-3 gap-4 animate-in-delay-1">
+        <Card className="p-4">
+          <div className="flex items-center gap-3">
+            <div className="w-9 h-9 rounded-lg bg-emerald-500/10 border border-emerald-500/20 flex items-center justify-center">
+              <DollarSign className="w-4 h-4 text-emerald-400" />
+            </div>
+            <div>
+              <p className="text-xs text-zinc-500">Monthly Cost</p>
+              <p className="text-lg font-bold text-white">${totalCost}</p>
+              <p className="text-[10px] text-emerald-400">-8% vs last month</p>
+            </div>
+          </div>
+        </Card>
+        <Card className="p-4">
+          <div className="flex items-center gap-3">
+            <div className="w-9 h-9 rounded-lg bg-blue-500/10 border border-blue-500/20 flex items-center justify-center">
+              <Shield className="w-4 h-4 text-blue-400" />
+            </div>
+            <div>
+              <p className="text-xs text-zinc-500">SLA Compliance</p>
+              <p className="text-lg font-bold text-white">99.7%</p>
+              <p className="text-[10px] text-emerald-400">Above 99.5% target</p>
+            </div>
+          </div>
+        </Card>
+        <Card className="p-4">
+          <div className="flex items-center gap-3">
+            <div className="w-9 h-9 rounded-lg bg-red-500/10 border border-red-500/20 flex items-center justify-center">
+              <AlertTriangle className="w-4 h-4 text-red-400" />
+            </div>
+            <div>
+              <p className="text-xs text-zinc-500">Active Incidents</p>
+              <p className="text-lg font-bold text-white">{activeIncidents}</p>
+              <p className="text-[10px] text-zinc-500">
+                {mockIncidents.filter(i => i.severity === 'critical').length} critical
+              </p>
+            </div>
+          </div>
+        </Card>
       </div>
 
       {/* Charts Row */}
@@ -217,7 +261,10 @@ export default function Dashboard() {
                           i === 0 ? 'text-blue-400' : i === 1 ? 'text-purple-400' : i === 2 ? 'text-pink-400' : i === 3 ? 'text-emerald-400' : 'text-amber-400'
                         )} />
                       </div>
-                      <span className="text-sm font-medium text-zinc-200">{pipeline.name}</span>
+                      <div>
+                        <span className="text-sm font-medium text-zinc-200">{pipeline.name}</span>
+                        <p className="text-[10px] text-zinc-600 capitalize">{pipeline.industry}</p>
+                      </div>
                     </div>
                   </td>
                   <td className="py-3 px-4 text-sm text-zinc-400">{pipeline.traces}</td>
