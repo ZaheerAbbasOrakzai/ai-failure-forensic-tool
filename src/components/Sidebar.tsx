@@ -7,7 +7,8 @@ import {
 import { cn } from '../lib/utils';
 
 const navItems = [
-  { path: '/', icon: LayoutDashboard, label: 'Dashboard' },
+  { path: '/', icon: LayoutDashboard, label: 'Live Dashboard' },
+  { path: '/dashboard', icon: LayoutDashboard, label: 'Overview' },
   { path: '/traces', icon: Search, label: 'Traces' },
   { path: '/incidents', icon: AlertTriangle, label: 'Incidents' },
   { path: '/root-cause', icon: Target, label: 'Root Cause' },
@@ -64,7 +65,7 @@ export default function Sidebar({ onCommandPalette }: SidebarProps) {
         <div className="px-3 py-1.5 text-[10px] font-semibold text-zinc-600 uppercase tracking-wider">
           Monitor
         </div>
-        {navItems.slice(0, 4).map(item => {
+        {navItems.slice(0, 5).map(item => {
           const isActive = item.path === '/' 
             ? location.pathname === '/' 
             : location.pathname.startsWith(item.path);
@@ -90,7 +91,7 @@ export default function Sidebar({ onCommandPalette }: SidebarProps) {
         <div className="px-3 py-1.5 mt-4 text-[10px] font-semibold text-zinc-600 uppercase tracking-wider">
           Workflow
         </div>
-        {navItems.slice(4, 7).map(item => {
+        {navItems.slice(5, 8).map(item => {
           const isActive = location.pathname.startsWith(item.path);
           
           return (
@@ -114,7 +115,7 @@ export default function Sidebar({ onCommandPalette }: SidebarProps) {
         <div className="px-3 py-1.5 mt-4 text-[10px] font-semibold text-zinc-600 uppercase tracking-wider">
           Platform
         </div>
-        {navItems.slice(7).map(item => {
+        {navItems.slice(8).map(item => {
           const isActive = location.pathname.startsWith(item.path);
           
           return (

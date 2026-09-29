@@ -2,7 +2,8 @@ import { Bell, Search, Command, ChevronDown, Activity } from 'lucide-react';
 import { useLocation } from 'react-router-dom';
 
 const pageNames: Record<string, string> = {
-  '/': 'Dashboard',
+  '/': 'Live Dashboard',
+  '/dashboard': 'Overview',
   '/traces': 'Trace Explorer',
   '/incidents': 'Incidents',
   '/root-cause': 'Root Cause Analysis',

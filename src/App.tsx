@@ -3,6 +3,7 @@ import { HashRouter as Router, Routes, Route } from 'react-router-dom';
 import Sidebar from './components/Sidebar';
 import Header from './components/Header';
 import CommandPalette from './components/CommandPalette';
+import LiveDashboard from './pages/LiveDashboard';
 import Dashboard from './pages/Dashboard';
 import TraceExplorer from './pages/TraceExplorer';
 import TraceDetail from './pages/TraceDetail';
@@ -37,7 +38,8 @@ export default function App() {
           <Header onCommandPalette={() => setCommandPaletteOpen(true)} />
           <main className="flex-1 overflow-y-auto p-6">
             <Routes>
-              <Route path="/" element={<Dashboard />} />
+              <Route path="/" element={<LiveDashboard />} />
+              <Route path="/dashboard" element={<Dashboard />} />
               <Route path="/traces" element={<TraceExplorer />} />
               <Route path="/traces/:traceId" element={<TraceDetail />} />
               <Route path="/incidents" element={<Incidents />} />
