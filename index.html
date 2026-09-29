@@ -3,8 +3,18 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Failure Forensics — AI Pipeline Observability</title>
-    <meta name="description" content="Automated root cause analysis for AI pipelines. Trace, debug, and improve your LLM workflows." />
+    <title>Failure Forensics — AI Pipeline Observability Platform</title>
+    <meta name="description" content="Production-grade, real-time observability platform for AI pipelines with automated root cause analysis, incident detection, and evaluation dataset generation. Built for Healthcare, Finance, Legal, E-Commerce, and SaaS industries." />
+    <meta name="keywords" content="AI Observability, LLM Monitoring, Root Cause Analysis, Pipeline Forensics, AI Failure Detection, LangChain, RAG, Evaluation Dataset, Incident Management" />
+    <meta name="author" content="Zaheer Abbas" />
+    <meta name="theme-color" content="#09090b" />
+    <meta property="og:type" content="website" />
+    <meta property="og:title" content="Failure Forensics — AI Pipeline Observability Platform" />
+    <meta property="og:description" content="Automated root cause analysis for AI pipelines. Trace, debug, and improve your LLM workflows with real-time monitoring." />
+    <meta property="og:image" content="https://coresg-normal.trae.ai/api/ide/v1/text_to_image?prompt=AI%20pipeline%20observability%20dashboard%20dark%20theme%20with%20orange%20accents%20showing%20real-time%20metrics%20and%20charts&image_size=landscape_16_9" />
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:title" content="Failure Forensics — AI Pipeline Observability" />
+    <meta name="twitter:description" content="Automated root cause analysis for AI pipelines with real-time monitoring and incident detection." />
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet" />
@@ -20,25 +30,70 @@
         background-color: #09090b !important;
         color: #fafafa;
         font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+        -webkit-font-smoothing: antialiased;
+        -moz-osx-font-smoothing: grayscale;
       }
-      /* Prevent flash of unstyled content */
+      * {
+        scrollbar-width: thin;
+        scrollbar-color: rgba(75, 85, 99, 0.4) transparent;
+      }
+      *::-webkit-scrollbar {
+        width: 5px;
+        height: 5px;
+      }
+      *::-webkit-scrollbar-track {
+        background: transparent;
+      }
+      *::-webkit-scrollbar-thumb {
+        background-color: rgba(75, 85, 99, 0.4);
+        border-radius: 10px;
+      }
       #root:empty {
         display: flex;
         align-items: center;
         justify-content: center;
         height: 100vh;
+        background: 
+          radial-gradient(ellipse at top, rgba(249, 115, 22, 0.08) 0%, transparent 50%),
+          radial-gradient(ellipse at bottom, rgba(59, 130, 246, 0.05) 0%, transparent 50%),
+          #09090b;
+        position: relative;
+        overflow: hidden;
+      }
+      #root:empty::before {
+        content: '';
+        position: absolute;
+        inset: 0;
+        background-image: 
+          linear-gradient(rgba(63, 63, 70, 0.08) 1px, transparent 1px),
+          linear-gradient(90deg, rgba(63, 63, 70, 0.08) 1px, transparent 1px);
+        background-size: 28px 28px;
+        animation: gridFloat 20s linear infinite;
+      }
+      @keyframes gridFloat {
+        0% { background-position: 0 0; }
+        100% { background-position: 28px 28px; }
       }
       #root:empty::after {
         content: '';
-        width: 32px;
-        height: 32px;
-        border: 3px solid rgba(249, 115, 22, 0.2);
+        width: 44px;
+        height: 44px;
+        border: 3px solid rgba(249, 115, 22, 0.15);
         border-top-color: #f97316;
-        border-radius: 50%;
-        animation: spin 0.8s linear infinite;
+        border-radius: 14px;
+        animation: spinScale 0.9s cubic-bezier(0.4, 0, 0.2, 1) infinite;
+        box-shadow: 0 0 40px rgba(249, 115, 22, 0.15), 0 0 80px rgba(249, 115, 22, 0.05);
+        position: relative;
+        z-index: 10;
       }
-      @keyframes spin {
-        to { transform: rotate(360deg); }
+      @keyframes spinScale {
+        0% { transform: rotate(0deg) scale(0.95); }
+        50% { transform: rotate(180deg) scale(1.05); }
+        100% { transform: rotate(360deg) scale(0.95); }
+      }
+      @keyframes pulseGlow {
+        0%, 100% { opacity: 0.6; }
+        50% { opacity: 1; }
       }
     </style>
     <script>
