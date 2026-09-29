@@ -1,0 +1,267 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1600 900" width="1600" height="900">
+  <defs>
+    <linearGradient id="bg2" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0%" stop-color="#09090b"/>
+      <stop offset="100%" stop-color="#18181b"/>
+    </linearGradient>
+    <radialGradient id="gl2" cx="0.85" cy="0.25" r="0.5">
+      <stop offset="0%" stop-color="#3b82f6" stop-opacity="0.2"/>
+      <stop offset="100%" stop-color="#3b82f6" stop-opacity="0"/>
+    </radialGradient>
+    <linearGradient id="spSuccess" x1="0" y1="0" x2="1" y2="0">
+      <stop offset="0%" stop-color="#22c55e"/>
+      <stop offset="100%" stop-color="#16a34a"/>
+    </linearGradient>
+    <linearGradient id="spError" x1="0" y1="0" x2="1" y2="0">
+      <stop offset="0%" stop-color="#ef4444"/>
+      <stop offset="100%" stop-color="#dc2626"/>
+    </linearGradient>
+    <linearGradient id="spWarning" x1="0" y1="0" x2="1" y2="0">
+      <stop offset="0%" stop-color="#eab308"/>
+      <stop offset="100%" stop-color="#ca8a04"/>
+    </linearGradient>
+    <linearGradient id="spInfo" x1="0" y1="0" x2="1" y2="0">
+      <stop offset="0%" stop-color="#3b82f6"/>
+      <stop offset="100%" stop-color="#2563eb"/>
+    </linearGradient>
+    <linearGradient id="card2" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0%" stop-color="#27272a"/>
+      <stop offset="100%" stop-color="#1c1c1f"/>
+    </linearGradient>
+  </defs>
+
+  <rect width="1600" height="900" fill="url(#bg2)"/>
+  <rect width="1600" height="900" fill="url(#gl2)"/>
+
+  <!-- Top bar + breadcrumb -->
+  <rect width="1600" height="60" fill="#09090b" stroke="#27272a"/>
+  <rect x="30" y="16" width="140" height="28" rx="7" fill="#27272a"/>
+  <polygon points="46,30 54,24 54,36" fill="#71717a"/>
+  <text x="64" y="35" font-family="Inter, Arial, sans-serif" font-size="12" fill="#a1a1aa">All Traces</text>
+  <text x="186" y="38" font-family="Inter, Arial, sans-serif" font-size="14" fill="#a1a1aa">
+    / Trace Explorer /
+    <tspan fill="#f4f4f5" font-weight="600"> otel_7f9d31a8c…3a1c</tspan>
+  </text>
+  <rect x="1250" y="16" width="130" height="28" rx="14" fill="#450a0a" stroke="#ef4444" stroke-opacity="0.3"/>
+  <text x="1315" y="35" font-family="Inter, Arial, sans-serif" font-size="11" fill="#fca5a5" font-weight="700" text-anchor="middle">● TRACE FAILED</text>
+
+  <!-- Left column: trace summary -->
+  <g transform="translate(30,90)" font-family="Inter, Arial, sans-serif">
+    <rect width="480" height="780" rx="14" fill="url(#card2)" stroke="#3f3f46"/>
+
+    <text x="28" y="40" font-size="13" fill="#71717a" font-weight="600" letter-spacing="1">TRACE SUMMARY</text>
+    <g transform="translate(28,62)" font-size="12">
+      <g>
+        <text x="0" y="0" fill="#71717a">Trace ID</text>
+        <rect x="200" y="-16" width="230" height="24" rx="6" fill="#18181b"/>
+        <text x="210" y="1" font-family="JetBrains Mono, Consolas, monospace" font-size="11" fill="#d4d4d8">otel_7f9d31a8c9e…3a1c</text>
+      </g>
+      <g transform="translate(0,40)">
+        <text x="0" y="0" fill="#71717a">Pipeline</text>
+        <text x="200" y="0" fill="#f4f4f5" font-weight="600">fin-fraud-detect</text>
+      </g>
+      <g transform="translate(0,80)">
+        <text x="0" y="0" fill="#71717a">Model</text>
+        <text x="200" y="0" fill="#d4d4d8">claude-3-sonnet @ 20240620</text>
+      </g>
+      <g transform="translate(0,120)">
+        <text x="0" y="0" fill="#71717a">Industry</text>
+        <text x="200" y="0" fill="#f4f4f5">Financial Services</text>
+      </g>
+      <g transform="translate(0,160)">
+        <text x="0" y="0" fill="#71717a">SLA Target</text>
+        <rect x="200" y="-16" width="110" height="24" rx="12" fill="#18181b" stroke="#22c55e" stroke-opacity="0.3"/>
+        <text x="255" y="1" text-anchor="middle" font-size="11" fill="#86efac" font-weight="700">99.99% Uptime</text>
+      </g>
+      <g transform="translate(0,200)">
+        <text x="0" y="0" fill="#71717a">Status</text>
+        <rect x="200" y="-16" width="100" height="24" rx="12" fill="#450a0a" stroke="#ef4444" stroke-opacity="0.35"/>
+        <text x="250" y="1" text-anchor="middle" font-size="11" fill="#fecaca" font-weight="700">✖ FAILED</text>
+      </g>
+      <g transform="translate(0,240)">
+        <text x="0" y="0" fill="#71717a">Latency (Total)</text>
+        <text x="200" y="0" font-family="JetBrains Mono, monospace" font-size="15" font-weight="700" fill="#f97316">3.82 s</text>
+      </g>
+      <g transform="translate(0,280)">
+        <text x="0" y="0" fill="#71717a">Total Tokens</text>
+        <text x="200" y="0" font-family="JetBrains Mono, monospace" font-size="13" fill="#d4d4d8">12,480  (input 9,140 / output 3,340)</text>
+      </g>
+      <g transform="translate(0,320)">
+        <text x="0" y="0" fill="#71717a">Cost</text>
+        <text x="200" y="0" font-family="JetBrains Mono, monospace" font-size="15" font-weight="700" fill="#22c55e">$ 0.2238</text>
+      </g>
+      <g transform="translate(0,360)">
+        <text x="0" y="0" fill="#71717a">Timestamp (UTC)</text>
+        <text x="200" y="0" font-family="JetBrains Mono, monospace" font-size="12" fill="#a1a1aa">2026-09-30 14:22:18.224</text>
+      </g>
+      <g transform="translate(0,400)">
+        <text x="0" y="0" fill="#71717a">User</text>
+        <text x="200" y="0" fill="#d4d4d8">sarah.chen@riskops.ai</text>
+      </g>
+      <g transform="translate(0,440)">
+        <text x="0" y="0" fill="#71717a">Version</text>
+        <text x="200" y="0" font-family="JetBrains Mono, monospace" font-size="12" fill="#a1a1aa">pipeline@v2.14.3</text>
+      </g>
+    </g>
+
+    <!-- Error box -->
+    <rect x="28" y="550" width="424" height="170" rx="12" fill="#1c1917" stroke="#ef4444" stroke-opacity="0.35"/>
+    <rect x="28" y="550" width="424" height="40" rx="12"/>
+    <rect x="28" y="550" width="424" height="40" fill="#ef4444" fill-opacity="0.08"/>
+    <circle cx="50" cy="570" r="8" fill="#7f1d1d"/>
+    <text x="46" y="574" font-size="12" text-anchor="middle" fill="#fecaca" font-weight="800">!</text>
+    <text x="68" y="575" font-size="13" fill="#fecaca" font-weight="700">Tool Call Error</text>
+
+    <text x="44" y="616" font-size="11" fill="#a1a1aa" font-family="JetBrains Mono, monospace">Error: Transaction enrichment service</text>
+    <text x="44" y="634" font-size="11" fill="#a1a1aa" font-family="JetBrains Mono, monospace">returned HTTP 503 — upstream DB connection</text>
+    <text x="44" y="652" font-size="11" fill="#a1a1aa" font-family="JetBrains Mono, monospace">pool exhausted during peak load window.</text>
+    <text x="44" y="670" font-size="11" fill="#a1a1aa" font-family="JetBrains Mono, monospace">Span ID: sp_88fc13  •  retries: 2/3</text>
+
+    <rect x="44" y="688" width="160" height="28" rx="7" fill="#ef4444" fill-opacity="0.12" stroke="#ef4444" stroke-opacity="0.35"/>
+    <text x="124" y="706" text-anchor="middle" font-size="11" fill="#fca5a5" font-weight="600">→ Run Root Cause Analysis</text>
+  </g>
+
+  <!-- Right column: Waterfall + Tabs -->
+  <g transform="translate(540,90)" font-family="Inter, Arial, sans-serif">
+    <rect width="1030" height="780" rx="14" fill="url(#card2)" stroke="#3f3f46"/>
+
+    <!-- Tabs -->
+    <g transform="translate(28,28)" font-size="12">
+      <rect x="0" y="0" width="90" height="32" rx="8" fill="#18181b" stroke="#3b82f6" stroke-opacity="0.35"/>
+      <text x="45" y="21" text-anchor="middle" fill="#93c5fd" font-weight="600">Waterfall</text>
+
+      <rect x="100" y="0" width="82" height="32" rx="8" fill="transparent"/>
+      <text x="141" y="21" text-anchor="middle" fill="#a1a1aa">Input</text>
+
+      <rect x="192" y="0" width="92" height="32" rx="8" fill="transparent"/>
+      <text x="238" y="21" text-anchor="middle" fill="#a1a1aa">Output</text>
+
+      <rect x="294" y="0" width="110" height="32" rx="8" fill="transparent"/>
+      <text x="349" y="21" text-anchor="middle" fill="#a1a1aa">Metadata</text>
+    </g>
+    <line x1="28" y1="76" x2="1002" y2="76" stroke="#3f3f46" stroke-opacity="0.6"/>
+
+    <!-- Waterfall timeline top axis (0 - 4.0s) -->
+    <g transform="translate(28,104)" font-family="JetBrains Mono, Consolas, monospace" font-size="10" fill="#52525b">
+      <g stroke="#3f3f46" stroke-opacity="0.35" stroke-dasharray="2,4">
+        <line x1="220" y1="0" x2="220" y2="660"/>
+        <line x1="430" y1="0" x2="430" y2="660"/>
+        <line x1="640" y1="0" x2="640" y2="660"/>
+        <line x1="850" y1="0" x2="850" y2="660"/>
+      </g>
+      <text x="220" y="-8" text-anchor="middle">1.0s</text>
+      <text x="430" y="-8" text-anchor="middle">2.0s</text>
+      <text x="640" y="-8" text-anchor="middle">3.0s</text>
+      <text x="850" y="-8" text-anchor="middle">3.8s</text>
+    </g>
+
+    <!-- Waterfall span rows -->
+    <g transform="translate(28,110)" font-size="12" font-family="Inter, Arial, sans-serif">
+      <!-- row 1 trace -->
+      <g transform="translate(0,0)">
+        <text x="0" y="20" fill="#f4f4f5" font-weight="600" width="210">trace.root</text>
+        <text x="180" y="20" text-anchor="end" fill="#52525b" font-family="JetBrains Mono, monospace" font-size="10">3.82s</text>
+        <rect x="220" y="8" width="630" height="18" rx="5" fill="url(#spInfo)" fill-opacity="0.85"/>
+      </g>
+      <!-- row 2 retrieval -->
+      <g transform="translate(0,40)">
+        <text x="16" y="20" fill="#d4d4d8">⤷ 1. retrieval.context</text>
+        <text x="180" y="20" text-anchor="end" fill="#52525b" font-family="JetBrains Mono, monospace" font-size="10">0.81s</text>
+        <rect x="220" y="8" width="140" height="18" rx="5" fill="url(#spSuccess)" fill-opacity="0.75"/>
+      </g>
+      <!-- row 3 rerank -->
+      <g transform="translate(0,80)">
+        <text x="32" y="20" fill="#a1a1aa">· rerank.chunks</text>
+        <text x="180" y="20" text-anchor="end" fill="#52525b" font-family="JetBrains Mono, monospace" font-size="10">0.19s</text>
+        <rect x="290" y="8" width="33" height="18" rx="5" fill="url(#spSuccess)" fill-opacity="0.7"/>
+      </g>
+      <!-- row 4 prompt -->
+      <g transform="translate(0,120)">
+        <text x="16" y="20" fill="#d4d4d8">⤷ 2. prompt.compose</text>
+        <text x="180" y="20" text-anchor="end" fill="#52525b" font-family="JetBrains Mono, monospace" font-size="10">0.04s</text>
+        <rect x="365" y="8" width="8" height="18" rx="4" fill="url(#spInfo)" fill-opacity="0.8"/>
+      </g>
+      <!-- row 5 llm call -->
+      <g transform="translate(0,160)">
+        <text x="16" y="20" fill="#fca5a5" font-weight="600">⤷ 3. llm.generate  ⚠ partial</text>
+        <text x="180" y="20" text-anchor="end" fill="#f97316" font-family="JetBrains Mono, monospace" font-size="10">1.26s</text>
+        <rect x="375" y="8" width="218" height="18" rx="5" fill="url(#spWarning)" fill-opacity="0.85"/>
+      </g>
+      <!-- row 6 reasoning -->
+      <g transform="translate(0,200)">
+        <text x="32" y="20" fill="#a1a1aa">· llm.thinking (reasoning)</text>
+        <text x="180" y="20" text-anchor="end" fill="#52525b" font-family="JetBrains Mono, monospace" font-size="10">0.74s</text>
+        <rect x="380" y="8" width="128" height="18" rx="5" fill="url(#spWarning)" fill-opacity="0.7"/>
+      </g>
+      <!-- row 7 tool -->
+      <g transform="translate(0,240)">
+        <text x="16" y="20" fill="#fecaca" font-weight="600">⤷ 4. tool.enrich_transaction  ✕ ERROR</text>
+        <text x="180" y="20" text-anchor="end" fill="#ef4444" font-family="JetBrains Mono, monospace" font-size="10" font-weight="700">1.48s</text>
+        <rect x="600" y="8" width="254" height="18" rx="5" fill="url(#spError)" fill-opacity="0.85"/>
+      </g>
+      <!-- row 8 retries -->
+      <g transform="translate(0,280)">
+        <text x="32" y="20" fill="#a1a1aa">· retry #1 (timeout 2s)</text>
+        <text x="180" y="20" text-anchor="end" fill="#52525b" font-family="JetBrains Mono, monospace" font-size="10">0.83s</text>
+        <rect x="605" y="8" width="143" height="18" rx="5" fill="url(#spError)" fill-opacity="0.65"/>
+      </g>
+      <g transform="translate(0,320)">
+        <text x="32" y="20" fill="#a1a1aa">· retry #2 (timeout 2s)</text>
+        <text x="180" y="20" text-anchor="end" fill="#52525b" font-family="JetBrains Mono, monospace" font-size="10">0.61s</text>
+        <rect x="752" y="8" width="102" height="18" rx="5" fill="url(#spError)" fill-opacity="0.65"/>
+      </g>
+      <!-- row 9 eval guard -->
+      <g transform="translate(0,360)">
+        <text x="16" y="20" fill="#d4d4d8">⤷ 5. eval.guardrails</text>
+        <text x="180" y="20" text-anchor="end" fill="#52525b" font-family="JetBrains Mono, monospace" font-size="10">0.12s</text>
+        <rect x="820" y="8" width="22" height="18" rx="5" fill="url(#spSuccess)" fill-opacity="0.7"/>
+      </g>
+      <!-- row 10 output -->
+      <g transform="translate(0,400)">
+        <text x="16" y="20" fill="#d4d4d8">⤷ 6. post.process</text>
+        <text x="180" y="20" text-anchor="end" fill="#52525b" font-family="JetBrains Mono, monospace" font-size="10">0.07s</text>
+        <rect x="845" y="8" width="10" height="18" rx="5" fill="url(#spInfo)" fill-opacity="0.7"/>
+      </g>
+
+      <!-- Legend -->
+      <g transform="translate(0,480)" font-size="11" fill="#d4d4d8">
+        <text x="0" y="0" fill="#71717a" font-weight="600" letter-spacing="1">LEGEND</text>
+
+        <rect x="0" y="16" width="140" height="28" rx="14" fill="#18181b" stroke="#3f3f46"/>
+        <rect x="14" y="24" width="18" height="12" rx="3" fill="url(#spSuccess)"/>
+        <text x="40" y="34">Success</text>
+
+        <rect x="150" y="16" width="140" height="28" rx="14" fill="#18181b" stroke="#3f3f46"/>
+        <rect x="164" y="24" width="18" height="12" rx="3" fill="url(#spInfo)"/>
+        <text x="190" y="34">Info / Root</text>
+
+        <rect x="300" y="16" width="140" height="28" rx="14" fill="#18181b" stroke="#3f3f46"/>
+        <rect x="314" y="24" width="18" height="12" rx="3" fill="url(#spWarning)"/>
+        <text x="340" y="34">Partial</text>
+
+        <rect x="450" y="16" width="140" height="28" rx="14" fill="#18181b" stroke="#3f3f46"/>
+        <rect x="464" y="24" width="18" height="12" rx="3" fill="url(#spError)"/>
+        <text x="490" y="34">Failed / Error</text>
+      </g>
+
+      <!-- JSON Panel -->
+      <g transform="translate(0,550)">
+        <rect width="974" height="200" rx="10" fill="#0c0a09" stroke="#3f3f46"/>
+        <rect x="0" y="0" width="974" height="34" fill="#1c1917" stroke="#3f3f46" stroke-opacity="0.5"/>
+        <text x="14" y="22" font-size="11" fill="#71717a" font-weight="600">SPAN METADATA  ·  tool.enrich_transaction</text>
+        <text x="900" y="22" text-anchor="end" font-size="10" fill="#52525b" font-family="JetBrains Mono, monospace">application/json  ·  2.3 KB</text>
+
+        <g font-family="JetBrains Mono, Consolas, monospace" font-size="11.5">
+          <text x="16" y="62" fill="#d4d4d8">{</text>
+          <text x="32" y="82" fill="#fb923c">"service"</text><text x="118" y="82" fill="#d4d4d8">: </text><text x="128" y="82" fill="#86efac">"fraud-tx-enrich-v2"</text><text x="328" y="82" fill="#d4d4d8">,</text>
+          <text x="32" y="102" fill="#fb923c">"http_status"</text><text x="134" y="102" fill="#d4d4d8">: </text><text x="144" y="102" fill="#fca5a5" font-weight="700">503</text><text x="174" y="102" fill="#d4d4d8">,</text>
+          <text x="32" y="122" fill="#fb923c">"error_code"</text><text x="134" y="122" fill="#d4d4d8">: </text><text x="144" y="122" fill="#86efac">"DB_POOL_EXHAUSTED"</text><text x="316" y="122" fill="#d4d4d8">,</text>
+          <text x="32" y="142" fill="#fb923c">"retries"</text><text x="106" y="142" fill="#d4d4d8">: </text><text x="116" y="142" fill="#facc15">2</text><text x="126" y="142" fill="#d4d4d8">,</text>
+          <text x="32" y="162" fill="#fb923c">"max_retries"</text><text x="128" y="162" fill="#d4d4d8">: </text><text x="138" y="162" fill="#facc15">3</text><text x="148" y="162" fill="#d4d4d8">,</text>
+          <text x="32" y="182" fill="#fb923c">"customer_id"</text><text x="136" y="182" fill="#d4d4d8">: </text><text x="146" y="182" fill="#86efac">"cust_9f3…441b"</text>
+          <text x="16" y="202" fill="#d4d4d8">}</text>
+        </g>
+      </g>
+    </g>
+  </g>
+</svg>

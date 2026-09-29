@@ -1,0 +1,136 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1600 600" width="1600" height="600">
+  <defs>
+    <linearGradient id="bg" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0%" stop-color="#09090b"/>
+      <stop offset="100%" stop-color="#18181b"/>
+    </linearGradient>
+    <radialGradient id="glowOrange" cx="0.15" cy="0.3" r="0.5">
+      <stop offset="0%" stop-color="#f97316" stop-opacity="0.35"/>
+      <stop offset="100%" stop-color="#f97316" stop-opacity="0"/>
+    </radialGradient>
+    <radialGradient id="glowBlue" cx="0.9" cy="0.75" r="0.5">
+      <stop offset="0%" stop-color="#3b82f6" stop-opacity="0.28"/>
+      <stop offset="100%" stop-color="#3b82f6" stop-opacity="0"/>
+    </radialGradient>
+    <linearGradient id="titleGrad" x1="0" y1="0" x2="1" y2="0">
+      <stop offset="0%" stop-color="#f97316"/>
+      <stop offset="50%" stop-color="#fb923c"/>
+      <stop offset="100%" stop-color="#f472b6"/>
+    </linearGradient>
+    <linearGradient id="card" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0%" stop-color="#27272a"/>
+      <stop offset="100%" stop-color="#18181b"/>
+    </linearGradient>
+    <pattern id="grid" width="32" height="32" patternUnits="userSpaceOnUse">
+      <path d="M32 0 L0 0 0 32" fill="none" stroke="#27272a" stroke-width="1"/>
+    </pattern>
+  </defs>
+
+  <!-- Backgrounds -->
+  <rect width="1600" height="600" fill="url(#bg)"/>
+  <rect width="1600" height="600" fill="url(#grid)" opacity="0.5"/>
+  <rect width="1600" height="600" fill="url(#glowOrange)"/>
+  <rect width="1600" height="600" fill="url(#glowBlue)"/>
+
+  <!-- LIVE badge (animated pulsing dot) -->
+  <g transform="translate(110,110)">
+    <circle r="9" fill="#ef4444">
+      <animate attributeName="r" values="7;11;7" dur="1.8s" repeatCount="indefinite"/>
+    </circle>
+    <circle r="9" fill="#ef4444">
+      <animate attributeName="opacity" values="0.8;0.1;0.8" dur="1.8s" repeatCount="indefinite"/>
+      <animate attributeName="r" values="9;20;9" dur="1.8s" repeatCount="indefinite"/>
+    </circle>
+    <rect x="20" y="-12" width="64" height="24" rx="12" fill="#27272a" stroke="#ef4444" stroke-opacity="0.4"/>
+    <text x="32" y="5" font-family="Inter, Arial, sans-serif" font-size="12" font-weight="700" fill="#fecaca" letter-spacing="2">LIVE</text>
+  </g>
+
+  <!-- Logo mark -->
+  <g transform="translate(110,200)">
+    <circle r="64" fill="#18181b" stroke="#f97316" stroke-opacity="0.4" stroke-width="2"/>
+    <circle r="64" fill="none" stroke="#f97316" stroke-opacity="0.15" stroke-width="6">
+      <animateTransform attributeName="transform" type="rotate" from="0" to="360" dur="14s" repeatCount="indefinite"/>
+    </circle>
+    <g transform="translate(-26,-26)" stroke="#f97316" stroke-width="3" fill="none" stroke-linecap="round">
+      <circle cx="26" cy="26" r="18"/>
+      <line x1="26" y1="8" x2="26" y2="0"/>
+      <line x1="26" y1="52" x2="26" y2="44"/>
+      <line x1="8" y1="26" x2="0" y2="26"/>
+      <line x1="52" y1="26" x2="44" y2="26"/>
+      <circle cx="26" cy="26" r="5" fill="#fb923c" stroke="none"/>
+    </g>
+  </g>
+
+  <!-- Title -->
+  <text x="230" y="220" font-family="Inter, Arial, sans-serif" font-size="72" font-weight="800" fill="url(#titleGrad)" letter-spacing="-2">FAILURE FORENSICS</text>
+  <text x="232" y="270" font-family="Inter, Arial, sans-serif" font-size="26" font-weight="500" fill="#a1a1aa" letter-spacing="1">Production-Grade AI Pipeline Observability Platform</text>
+
+  <!-- Key stat pills -->
+  <g transform="translate(230,310)" font-family="JetBrains Mono, Consolas, monospace" font-size="14">
+    <rect width="170" height="34" rx="17" fill="#27272a" stroke="#f97316" stroke-opacity="0.3"/>
+    <text x="16" y="22" fill="#fdba74" font-weight="700">⚡ 20ms P50</text>
+
+    <rect x="186" width="190" height="34" rx="17" fill="#27272a" stroke="#3b82f6" stroke-opacity="0.3"/>
+    <text x="202" y="22" fill="#93c5fd" font-weight="700">🎯 99.99% Uptime</text>
+
+    <rect x="392" width="210" height="34" rx="17" fill="#27272a" stroke="#22c55e" stroke-opacity="0.3"/>
+    <text x="408" y="22" fill="#86efac" font-weight="700">🔍 75-95% RCA Confidence</text>
+  </g>
+
+  <!-- Mock stat cards on right side -->
+  <g transform="translate(1080,130)">
+    <rect width="420" height="340" rx="20" fill="url(#card)" stroke="#3f3f46"/>
+    <!-- card header -->
+    <rect x="20" y="20" width="380" height="40" rx="8" fill="#18181b"/>
+    <circle cx="42" cy="40" r="7" fill="#f97316"/>
+    <text x="58" y="45" font-family="Inter, Arial, sans-serif" font-size="13" fill="#e4e4e7" font-weight="600">PIPELINE HEALTH</text>
+    <!-- mini sparkline -->
+    <polyline points="30,140 70,110 110,125 150,80 190,95 230,60 270,85 310,50 350,70 390,40"
+      fill="none" stroke="#f97316" stroke-width="2.5"/>
+    <polyline points="30,140 70,110 110,125 150,80 190,95 230,60 270,85 310,50 350,70 390,40 390,180 30,180"
+      fill="#f97316" fill-opacity="0.12"/>
+    <!-- bars -->
+    <g transform="translate(30,210)" fill="#3b82f6">
+      <rect x="0" y="0" width="34" height="80" rx="4"/>
+      <rect x="44" y="20" width="34" height="60" rx="4"/>
+      <rect x="88" y="-10" width="34" height="90" rx="4" fill="#f97316"/>
+      <rect x="132" y="30" width="34" height="50" rx="4"/>
+      <rect x="176" y="10" width="34" height="70" rx="4"/>
+      <rect x="220" y="-20" width="34" height="100" rx="4" fill="#22c55e"/>
+      <rect x="264" y="15" width="34" height="65" rx="4"/>
+      <rect x="308" y="35" width="34" height="45" rx="4"/>
+      <rect x="352" y="0" width="34" height="80" rx="4"/>
+    </g>
+  </g>
+
+  <!-- Mini sidebar mockup (left bottom) -->
+  <g transform="translate(110,370)">
+    <rect width="240" height="190" rx="14" fill="url(#card)" stroke="#3f3f46"/>
+    <g font-family="Inter, Arial, sans-serif" font-size="13" fill="#a1a1aa">
+      <rect x="16" y="16" width="208" height="28" rx="7" fill="#f97316" fill-opacity="0.12" stroke="#f97316" stroke-opacity="0.3"/>
+      <circle cx="30" cy="30" r="5" fill="#f97316"/>
+      <text x="44" y="35" fill="#fed7aa" font-weight="600">Live Dashboard</text>
+
+      <rect x="16" y="54" width="208" height="26" rx="7" fill="transparent"/>
+      <circle cx="30" cy="67" r="4" fill="#71717a"/>
+      <text x="44" y="72">Trace Explorer</text>
+
+      <rect x="16" y="88" width="208" height="26" rx="7" fill="transparent"/>
+      <circle cx="30" cy="101" r="4" fill="#71717a"/>
+      <text x="44" y="106">Incidents</text>
+
+      <rect x="16" y="122" width="208" height="26" rx="7" fill="transparent"/>
+      <circle cx="30" cy="135" r="4" fill="#71717a"/>
+      <text x="44" y="140">Root Cause Analysis</text>
+
+      <rect x="16" y="156" width="208" height="26" rx="7" fill="transparent"/>
+      <circle cx="30" cy="169" r="4" fill="#71717a"/>
+      <text x="44" y="174">Analytics</text>
+    </g>
+  </g>
+
+  <!-- Footer tags -->
+  <g transform="translate(110,578)" font-family="JetBrains Mono, Consolas, monospace" font-size="11" fill="#52525b">
+    <text>REACT 18  •  TYPESCRIPT 5  •  VITE 6  •  TAILWIND 4  •  RECHARTS  •  FRAMER MOTION  •  LUCIDE</text>
+  </g>
+</svg>

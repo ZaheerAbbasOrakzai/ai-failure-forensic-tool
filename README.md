@@ -4,8 +4,8 @@
 
 <p align="center">
   <picture>
-    <source media="(prefers-color-scheme: dark)" srcset="docs/screenshots/00-social-banner.png">
-    <img alt="Failure Forensics Platform Banner" src="docs/screenshots/00-social-banner.png">
+    <source media="(prefers-color-scheme: dark)" srcset="docs/screenshots/00-social-banner.svg">
+    <img alt="Failure Forensics Platform Banner" src="docs/screenshots/00-social-banner.svg">
   </picture>
 </p>
 
@@ -252,8 +252,8 @@ ai-failure-forensic-tool/
 ### 🎬 Live Dashboard
 
 <picture>
-  <source media="(prefers-color-scheme: dark)" srcset="docs/screenshots/01-live-dashboard.png">
-  <img alt="Live Dashboard - Real-time monitoring with live trace feed, latency charts & incident alerts" src="docs/screenshots/01-live-dashboard.png" width="100%" style="border-radius: 12px; border: 1px solid rgba(249,115,22,0.2); box-shadow: 0 0 40px rgba(249,115,22,0.12);">
+  <source media="(prefers-color-scheme: dark)" srcset="docs/screenshots/01-live-dashboard.svg">
+  <img alt="Live Dashboard - Real-time monitoring with live trace feed, latency charts & incident alerts" src="docs/screenshots/01-live-dashboard.svg" width="100%" style="border-radius: 12px; border: 1px solid rgba(249,115,22,0.2); box-shadow: 0 0 40px rgba(249,115,22,0.12);">
 </picture>
 
 <sub>Real-time monitoring with live trace feed, latency charts & incident alerts</sub>
@@ -264,8 +264,8 @@ ai-failure-forensic-tool/
 ### 🔍 Trace Waterfall View
 
 <picture>
-  <source media="(prefers-color-scheme: dark)" srcset="docs/screenshots/02-trace-waterfall-view.png">
-  <img alt="Trace Waterfall View - Detailed trace analysis with waterfall timing, error detection & metadata inspection" src="docs/screenshots/02-trace-waterfall-view.png" width="100%" style="border-radius: 12px; border: 1px solid rgba(59,130,246,0.2); box-shadow: 0 0 40px rgba(59,130,246,0.12);">
+  <source media="(prefers-color-scheme: dark)" srcset="docs/screenshots/02-trace-waterfall-view.svg">
+  <img alt="Trace Waterfall View - Detailed trace analysis with waterfall timing, error detection & metadata inspection" src="docs/screenshots/02-trace-waterfall-view.svg" width="100%" style="border-radius: 12px; border: 1px solid rgba(59,130,246,0.2); box-shadow: 0 0 40px rgba(59,130,246,0.12);">
 </picture>
 
 <sub>Detailed trace analysis with waterfall timing, error detection & metadata inspection</sub>
@@ -276,8 +276,8 @@ ai-failure-forensic-tool/
 ### 📈 Analytics Dashboard
 
 <picture>
-  <source media="(prefers-color-scheme: dark)" srcset="docs/screenshots/03-analytics-dashboard.png">
-  <img alt="Analytics Dashboard - Comprehensive analytics with latency percentiles, trend lines & system quality radar" src="docs/screenshots/03-analytics-dashboard.png" width="100%" style="border-radius: 12px; border: 1px solid rgba(34,197,94,0.2); box-shadow: 0 0 40px rgba(34,197,94,0.12);">
+  <source media="(prefers-color-scheme: dark)" srcset="docs/screenshots/03-analytics-dashboard.svg">
+  <img alt="Analytics Dashboard - Comprehensive analytics with latency percentiles, trend lines & system quality radar" src="docs/screenshots/03-analytics-dashboard.svg" width="100%" style="border-radius: 12px; border: 1px solid rgba(34,197,94,0.2); box-shadow: 0 0 40px rgba(34,197,94,0.12);">
 </picture>
 
 <sub>Comprehensive analytics with latency percentiles, trend lines & system quality radar</sub>
